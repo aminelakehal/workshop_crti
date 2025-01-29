@@ -1,0 +1,21 @@
+
+Options -Indexes
+
+ErrorDocument 404 /workshop_crti/admin_page/views/404.php
+ErrorDocument 403 /workshop_crti/admin_page/views/403.php
+
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|bak|sql)">
+    Require all denied
+</FilesMatch>
+
+Header unset ETag
+Header always unset X-Powered-By
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]
